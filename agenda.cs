@@ -4,8 +4,7 @@ namespace Program
 {
     class Agenda
     {
-        private List<Contact> contacte = new List<Contact>();
-       // private int urmatorul_id = 1;   
+        private List<Contact> contacte = new List<Contact>();  
         public void meniu()
         {
             int opt;
@@ -27,7 +26,6 @@ namespace Program
                     case 2:
                         break;
                     case 3:
-
                         break;
                     case 4:
 
