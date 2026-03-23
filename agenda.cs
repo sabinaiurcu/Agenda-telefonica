@@ -1,58 +1,61 @@
 ﻿using System;
+using System.Collections.Generic;
+
 
 namespace Program
 {
     class Agenda
     {
-        private List<Contact> contacte = new List<Contact>();  
-        public void meniu()
-        {
-            int opt;
-            do
-            {
-                Console.WriteLine("1. Adaugare contact");
-                Console.WriteLine("2. Afiseaza contacte");
-                Console.WriteLine("3. Cauta contact");
-                Console.WriteLine("4. Modifica contact");
-                Console.WriteLine("5. Sterge contact");
-                Console.WriteLine("0. Iesire");
+        public Contact CitireContactTastatura()
+        {   Console.WriteLine("Introd numele contactului:");
+            int urmatorul_id = 1;
+            string nume=Console.ReadLine();
 
-                opt = int.Parse(Console.ReadLine());
+            Console.WriteLine("Introd prenumele contactului:");
+            string prenume=Console.ReadLine();
 
-                switch (opt)
+            Console.WriteLine("Telefon:");
+            string telefon = Console.ReadLine();
+            
+            if(telefon.Length!=10)
                 {
-                    case 1:
-                        break;
-                    case 2:
-                        break;
-                    case 3:
-                        break;
-                    case 4:
-
-                        break;
-                    case 5:
-
-                        break;
-                    case 6:
-
-                        break;
+                    Console.WriteLine("numar invalid");
                 }
+      
+            Console.WriteLine("Email:");
+            string email=Console.ReadLine();
 
-            } while (opt != 0);
-        }
-
-        public void adaugare()
-        {
-            
-   
-        }
-        public void afisare()
-        {
+            Contact contactNou=new Contact(urmatorul_id ,nume,prenume, telefon, email);
+           
+            urmatorul_id++;
+            return contactNou;
 
         }
-        public void cauta()
+        public  void afisareContacte(Contact contact)
         {
-            
+            Console.WriteLine(contact.info());
+        }
+        public void cauta(List<Contact> contacte)
+        {
+            Console.WriteLine("Introd numele cautat: ");
+            string cuvant = Console.ReadLine();
+            bool gasit = false;
+            foreach (Contact c in contacte)
+            {
+                if (c.Nume.ToLower() == cuvant.ToLower())
+                {
+                    gasit = true;
+                }
+            }
+            if (!gasit)
+            {
+                Console.WriteLine("nu exista contactul");
+
+            }
+            else
+            {
+                Console.WriteLine("contactul exista");
+            }
         }
         public void modifica()
         {
