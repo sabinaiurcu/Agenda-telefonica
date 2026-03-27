@@ -1,8 +1,9 @@
 ﻿using System;
 
-namespace Program
+namespace modele
+
 {
-    class Contact
+    public class Contact
     {
         public int Id { get; set; }
         public string Nume { get; set; }

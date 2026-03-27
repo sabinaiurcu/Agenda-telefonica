@@ -1,4 +1,6 @@
-﻿using System;
+﻿using modele;
+using NivelStocareDate;
+using System;
 
 
 namespace Program
@@ -9,8 +11,11 @@ namespace Program
         {
              Agenda agenda = new Agenda();
              int opt;
-             List<Contact> contacte = new List<Contact>();
+            //List<Contact> contacte = new List<Contact>();
+            AdministrareContacteMem admincontacte = new AdministrareContacteMem();
              Contact contactNou = null;
+
+            List<Contact> contacte = admincontacte.Getcontacte();
             do
             {
                 Console.WriteLine("1. Adaugare contact");
@@ -18,6 +23,7 @@ namespace Program
                 Console.WriteLine("3. Cauta contact");
                 Console.WriteLine("4. Modifica contact");
                 Console.WriteLine("5. Sterge contact");
+                Console.WriteLine("6. Salvare Contact");
                 Console.WriteLine("0. Iesire");
                 Console.WriteLine("Optiunea dvs este:");
                 opt = int.Parse(Console.ReadLine());
@@ -26,23 +32,33 @@ namespace Program
                 {
                     case 1:
                         contactNou = agenda.CitireContactTastatura();
-                        contacte.Add(contactNou);
                         break;
                     case 2:
-                        agenda.afisareContacte(contactNou);
+                        foreach(Contact c in contacte)
+                        {
+                            Console.WriteLine(c.info());
+                        }
                         break;
                     case 3:
                         agenda.cauta(contacte);
                         break;
                     case 4:
-
+                        agenda.modifica(admincontacte.Getcontacte());
                         break;
                     case 5:
-
+                        agenda.sterge(admincontacte.Getcontacte());
                         break;
                     case 6:
-
-                        break;
+                        if (contactNou != null)
+                        {
+                            admincontacte.AddContact(contactNou);
+                            Console.WriteLine("Contact salvat!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Contactul nu a fost initializat"); 
+                        }
+                            break;
                 }
 
             } while (opt != 0);
