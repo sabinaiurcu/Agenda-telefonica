@@ -18,6 +18,7 @@ namespace Program
             List<Contact> contacte = admincontacte.Getcontacte();
             do
             {
+
                 Console.WriteLine("1. Adaugare contact");
                 Console.WriteLine("2. Afiseaza contacte");
                 Console.WriteLine("3. Cauta contact");
