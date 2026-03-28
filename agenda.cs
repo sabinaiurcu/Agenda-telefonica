@@ -27,7 +27,16 @@ namespace Program
             Console.WriteLine("Email:");
             string email = Console.ReadLine();
 
-            Contact contactNou = new Contact(urmatorul_id, nume, prenume, telefon, email);
+            Console.WriteLine("Categorie: 0=Familie, 1=Serviciu, 2=Prieten, 3=Altul ->");
+            int optCategorie = int.Parse(Console.ReadLine());
+            CategorieContact categorie = (CategorieContact)optCategorie;
+
+            Console.WriteLine("Contact(aduna valorile dorite): 1=Telefon, 2=Email, 4=WhatsApp, 8=Messenger ->");
+
+            int optMetode = int.Parse(Console.ReadLine());
+            MetodaContact metode = (MetodaContact)optMetode;
+
+            Contact contactNou = new Contact(urmatorul_id, nume, prenume, telefon, email,categorie,metode);
 
             urmatorul_id++;
             return contactNou;
