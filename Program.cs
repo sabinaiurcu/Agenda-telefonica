@@ -1,4 +1,5 @@
 ﻿using modele;
+
 using NivelStocareDate;
 using System;
 
@@ -11,11 +12,11 @@ namespace Program
         {
              Agenda agenda = new Agenda();
              int opt;
-            //List<Contact> contacte = new List<Contact>();
-            AdministrareContacteMem admincontacte = new AdministrareContacteMem();
-             Contact contactNou = null;
+   
+            IStocareData admincontacte = StocareFactory.GetAdministratorStocare(); 
+            Contact contactNou = null;         
 
-            List<Contact> contacte = admincontacte.Getcontacte();
+            List<Contact> contacte = new List<Contact>();
             do
             {
 
@@ -35,10 +36,8 @@ namespace Program
                         contactNou = agenda.CitireContactTastatura();
                         break;
                     case 2:
-                        foreach(Contact c in contacte)
-                        {
-                            Console.WriteLine(c.info());
-                        }
+                        contacte=admincontacte.Getcontacte();
+                        agenda.afisareContacte(contacte);
                         break;
                     case 3:
                         agenda.cauta(contacte);
@@ -59,10 +58,12 @@ namespace Program
                         {
                             Console.WriteLine("Contactul nu a fost initializat"); 
                         }
-                            break;
+                        break;
+                    
                 }
 
             } while (opt != 0);
+
         }
     }
 }

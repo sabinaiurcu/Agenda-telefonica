@@ -42,9 +42,18 @@ namespace Program
             return contactNou;
 
         }
-        public void afisareContacte(Contact contact)
+        public void afisareContacte(List<Contact> contacte)
         {
-            Console.WriteLine(contact.info());
+            if (contacte.Count == 0)
+            {
+                Console.WriteLine("Nu exista niciun contact in agenda.");
+                return;
+            }
+
+            foreach (Contact c in contacte)
+            {
+                Console.WriteLine(c.info());
+            }
         }
         public void cauta(List<Contact> contacte)
         {
